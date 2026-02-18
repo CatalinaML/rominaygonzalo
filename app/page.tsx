@@ -53,6 +53,32 @@ function InvitacionContent() {
     }
   };
 
+  // --- LÓGICA DEL CONTADOR ---
+  const [timeLeft, setTimeLeft] = React.useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  React.useEffect(() => {
+    // ESTABLECE AQUÍ LA FECHA DE LA BODA
+    const targetDate = new Date("2026-04-12T13:00:00").getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div style={{
       backgroundColor: '#FDFCFB',
@@ -74,6 +100,55 @@ function InvitacionContent() {
         <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5em', color: '#a8a29e', marginBottom: '20px' }}>Save the Date</span>
         <h1 style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', fontStyle: 'italic', fontWeight: '200', margin: '0' }}>Romina & Gonzalo</h1>
         <div style={{ width: '1px', height: '80px', backgroundColor: '#e7e5e4', margin: '30px 0' }}></div>
+      </section>
+
+      {/* SECCIÓN COUNTDOWN */}
+      <section style={{ padding: '80px 20px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+        <h2 style={{
+          fontFamily: 'serif',
+          fontStyle: 'italic',
+          fontSize: '1.8rem',
+          fontWeight: '300',
+          marginBottom: '40px',
+          color: '#78716c'
+        }}>
+          Cada segundo cuenta para el gran día...
+        </h2>
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '20px',
+          maxWidth: '500px',
+          margin: '0 auto'
+        }}>
+          {[
+            { label: 'DÍAS', value: timeLeft.days },
+            { label: 'HS', value: timeLeft.hours },
+            { label: 'MIN', value: timeLeft.minutes },
+            { label: 'SEG', value: timeLeft.seconds },
+          ].map((item, index) => (
+            <div key={index} style={{ flex: 1 }}>
+              <div style={{
+                fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+                fontWeight: '200',
+                color: '#1c1917',
+                borderBottom: '1px solid #e7e5e4',
+                paddingBottom: '10px',
+                marginBottom: '10px'
+              }}>
+                {String(item.value).padStart(2, '0')}
+              </div>
+              <div style={{
+                fontSize: '10px',
+                letterSpacing: '0.2em',
+                color: '#a8a29e'
+              }}>
+                {item.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* EVENTOS - CARDS CON MAPAS Y PINES EXACTOS */}
@@ -133,14 +208,68 @@ function InvitacionContent() {
         </div>
       </section>
 
-      {/* REGALOS */}
-      <section style={{ backgroundColor: '#f5f5f4', padding: '80px 20px', textAlign: 'center', borderTop: '1px solid #e7e5e4', borderBottom: '1px solid #e7e5e4' }}>
-        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <h2 style={{ fontStyle: 'italic', fontSize: '2rem', marginBottom: '20px' }}>Mesa de Regalos</h2>
-          <div style={{ backgroundColor: 'white', border: '1px solid #e7e5e4', padding: '30px', display: 'inline-block' }}>
-            <span style={{ fontSize: '9px', textTransform: 'uppercase', color: '#a8a29e', display: 'block', marginBottom: '10px' }}>Alias Bancario</span>
-            <p style={{ fontSize: '1.3rem', letterSpacing: '0.2em', fontWeight: 'bold', margin: '0' }}>ROMINA.Y.GONZALO</p>
-          </div>
+      {/* SECCIÓN MESA DE REGALOS */}
+      <section style={{
+        maxWidth: '700px',
+        margin: '100px auto',
+        padding: '60px 20px',
+        textAlign: 'center',
+        border: '1px solid #e7e5e4', // Marco fino
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        <div style={{ marginBottom: '30px' }}>
+          {/* Icono sutil de sobre o regalo */}
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#a8a29e" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '20px' }}>
+            <path d="M20 12V8H4v4M2 8l10 7 10-7M4 12v8h16v-8" />
+          </svg>
+
+          <h2 style={{ fontStyle: 'italic', fontSize: '1.8rem', fontWeight: '300', marginBottom: '20px' }}>Regalos</h2>
+
+          <p style={{
+            fontSize: '15px',
+            lineHeight: '1.8',
+            color: '#78716c',
+            maxWidth: '500px',
+            margin: '0 auto 40px',
+            fontFamily: 'serif'
+          }}>
+            Tu presencia es nuestro mejor regalo, pero si deseas ayudarnos con nuestra casita, pueden hacerlo aquí:
+          </p>
+        </div>
+
+        <div style={{
+          backgroundColor: '#f5f5f4',
+          padding: '30px',
+          borderRadius: '2px',
+          display: 'inline-block',
+          minWidth: '280px'
+        }}>
+          <p style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#a8a29e', margin: '0 0 10px' }}>BANCO NARANJA X</p>
+          <p style={{ fontSize: '14px', color: '#78716c', margin: '5px 0' }}>Alias: romina.y.gonzalo</p>
+
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText("0000000000000000000000");
+              alert("CBU copiado al portapapeles");
+            }}
+            style={{
+              marginTop: '20px',
+              backgroundColor: 'transparent',
+              border: '1px solid #d6d3d1',
+              padding: '10px 20px',
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#fff'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+          >
+            Copiar alias
+          </button>
         </div>
       </section>
 
