@@ -3,7 +3,7 @@ import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 import React from 'react';
-
+import { CSSProperties } from 'react';
 // --- CONFIGURACIÓN DE SUPABASE ---
 // Reemplaza con tus datos reales de Project Settings > API
 const SUPABASE_URL = 'https://smtzdfsofzzbtzermdgy.supabase.co';
@@ -17,14 +17,14 @@ function InvitacionContent() {
   const [confirmado, setConfirmado] = useState(false);
 
   // Estilos manuales para asegurar el diseño de "Card"
-  const cardStyle = {
+  const cardStyle: CSSProperties = {
     backgroundColor: 'white',
     border: '1px solid #e5e7eb',
     padding: '40px',
-    textAlign: 'center',
+    textAlign: 'center', // Aquí TS ya reconocerá que es un valor válido
     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column', // Ahora TS sabe que "column" es un valor legal de flex-direction
     alignItems: 'center',
     justifyContent: 'center'
   };
