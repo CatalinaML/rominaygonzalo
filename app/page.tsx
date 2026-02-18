@@ -2,11 +2,7 @@
 import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
-// Importación de componentes de Shadcn
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import React from 'react';
 
 // --- CONFIGURACIÓN DE SUPABASE ---
 // Reemplaza con tus datos reales de Project Settings > API
@@ -33,16 +29,24 @@ function InvitacionContent() {
     justifyContent: 'center'
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEnviando(true);
+
+    // Para acceder a los valores del formulario de forma segura en TS:
+    const formData = new FormData(e.currentTarget);
+    const nombre = formData.get('nombre') as string;
+    const dieta = formData.get('dieta') as string;
+
     try {
       const { error } = await supabase
         .from('confirmaciones')
-        .insert([{ invitado: e.target.nombre.value, dieta: e.target.dieta.value }]);
+        .insert([{ invitado: nombre, dieta: dieta, confirmacion: "confirmado" }]);
+
       if (error) throw error;
       setConfirmado(true);
     } catch (error) {
+      console.error(error);
       alert("Error al enviar.");
     } finally {
       setEnviando(false);
