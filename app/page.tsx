@@ -63,24 +63,58 @@ function InvitacionContent() {
         <div style={{ width: '1px', height: '80px', backgroundColor: '#e7e5e4', margin: '30px 0' }}></div>
       </section>
 
-      {/* EVENTOS - CARDS GARANTIZADAS */}
+      {/* EVENTOS - CARDS CON MAPAS Y PINES EXACTOS */}
       <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px 100px' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '30px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '40px'
         }}>
           {[
-            { t: "Ceremonia Civil", d: "9 Abril 2026", h: "14:30 hs", l: "Av independencia 2846." },
-            { t: "Ceremonia Religiosa", d: "12 Abril 2026", h: "13:00 hs", l: "Pqa. San Carlos Borromeo Juan B.Justo 2098" },
-            { t: "La Fiesta", d: "12 Abril 2026", h: "13:30 hs", l: "Centro Naval. Salón Michelis, Navegante Vito Dumas S/N Puerto Mar Del Plata" }
+            {
+              t: "Ceremonia Civil",
+              d: "9 Abril 2026",
+              h: "14:30 hs",
+              l: "Av. Independencia 2846, Mar del Plata",
+              // URL con dirección explícita
+              embedUrl: "https://maps.google.com/maps?q=Av.%20Independencia%202846,%20Mar%20del%20Plata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            },
+            {
+              t: "Ceremonia Religiosa",
+              d: "12 Abril 2026",
+              h: "13:00 hs",
+              l: "Pqa. San Carlos Borromeo, Juan B. Justo 2098",
+              // URL con dirección explícita
+              embedUrl: "https://maps.google.com/maps?q=Parroquia%20San%20Carlos%20Borromeo,%20Juan%20B.%20Justo%202098,%20Mar%20del%20Plata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            },
+            {
+              t: "La Fiesta",
+              d: "12 Abril 2026",
+              h: "13:30 hs",
+              l: "Centro Naval Salón Michelis, Navegante Vito Dumas S/N",
+              // URL con dirección explícita
+              embedUrl: "https://maps.google.com/maps?q=Centro%20Naval,%20Navegante%20Vito%20Dumas,%20Puerto%20Mar%20del%20Plata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            }
           ].map((item, i) => (
-            <div key={i} style={cardStyle}>
-              <h3 style={{ fontStyle: 'italic', fontSize: '1.5rem', marginBottom: '15px', fontWeight: '400' }}>{item.t}</h3>
-              <div style={{ width: '30px', height: '1px', backgroundColor: '#d6d3d1', marginBottom: '20px' }}></div>
-              <p style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#a8a29e', margin: '5px 0' }}>{item.d}</p>
-              <p style={{ fontSize: '1.2rem', margin: '10px 0' }}>{item.h}</p>
-              <p style={{ fontSize: '11px', color: '#78716c', textTransform: 'uppercase', lineHeight: '1.6' }}>{item.l}</p>
+            <div key={i} style={{ ...cardStyle, padding: '0', overflow: 'hidden' }}>
+              <div style={{ padding: '40px 30px 20px' }}>
+                <h3 style={{ fontStyle: 'italic', fontSize: '1.5rem', marginBottom: '15px', fontWeight: '400' }}>{item.t}</h3>
+                <div style={{ width: '30px', height: '1px', backgroundColor: '#d6d3d1', margin: '0 auto 20px' }}></div>
+                <p style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#a8a29e', margin: '5px 0' }}>{item.d}</p>
+                <p style={{ fontSize: '1.2rem', margin: '10px 0' }}>{item.h}</p>
+                <p style={{ fontSize: '11px', color: '#78716c', textTransform: 'uppercase', lineHeight: '1.6', marginBottom: '10px', minHeight: '40px' }}>{item.l}</p>
+              </div>
+
+              <div style={{ width: '100%', height: '300px', borderTop: '1px solid #f5f5f4' }}>
+                <iframe
+                  src={item.embedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                ></iframe>
+              </div>
             </div>
           ))}
         </div>
@@ -115,8 +149,7 @@ function InvitacionContent() {
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
               <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                <h2 style={{ fontStyle: 'italic', fontSize: '2.5rem', margin: '0 0 10px' }}>R.S.V.P</h2>
-                <p style={{ fontSize: '10px', textTransform: 'uppercase', color: '#a8a29e' }}>Confirmar asistencia</p>
+                <h2 style={{ fontStyle: 'italic', fontSize: '2.5rem', margin: '0 0 10px' }}>Confirmar asistencia</h2>
               </div>
               <div style={{ borderBottom: '1px solid #e7e5e4', paddingBottom: '10px' }}>
                 <label style={{ fontSize: '9px', textTransform: 'uppercase', color: '#a8a29e', display: 'block' }}>Nombre</label>
