@@ -251,8 +251,8 @@ function InvitacionContent() {
 
           <button
             onClick={() => {
-              navigator.clipboard.writeText("0000000000000000000000");
-              alert("CBU copiado al portapapeles");
+              navigator.clipboard.writeText("romina.y.gonzalo");
+              alert("Alias copiado al portapapeles");
             }}
             style={{
               marginTop: '20px',
