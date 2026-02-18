@@ -54,7 +54,20 @@ function InvitacionContent() {
   };
 
   return (
-    <div style={{ backgroundColor: '#FDFCFB', minHeight: '100vh', color: '#1c1917', fontFamily: 'serif' }}>
+    <div style={{
+      backgroundColor: '#FDFCFB',
+      minHeight: '100vh',
+      color: '#1c1917',
+      fontFamily: 'serif',
+      // --- ESTILOS DE FONDO ---
+      backgroundImage: 'url("/flores.png")',
+      backgroundPosition: 'center',  // Centradas
+      backgroundRepeat: 'no-repeat', // Que no se repitan como mosaico
+      backgroundAttachment: 'fixed', // Efecto elegante: el fondo se queda quieto al hacer scroll
+      position: 'relative',
+      overflowX: 'hidden'
+    }}>
+
 
       {/* HEADER */}
       <section style={{ height: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
