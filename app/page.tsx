@@ -151,58 +151,88 @@ function InvitacionContent() {
         </div>
       </section>
 
-      {/* EVENTOS - CARDS CON MAPAS Y PINES EXACTOS */}
+{/* EVENTOS - CARDS CON BOTÓN DE MAPA */}
       <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px 100px' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
           gap: '40px'
         }}>
           {[
-            {
-              t: "Ceremonia Civil",
-              d: "9 Abril 2026",
-              h: "14:30 hs",
+            { 
+              t: "Ceremonia Civil", 
+              d: "9 Abril 2026", 
+              h: "14:30 hs", 
               l: "Av. Independencia 2846, Mar del Plata",
-              // URL con dirección explícita
-              embedUrl: "https://maps.google.com/maps?q=Av.%20Independencia%202846,%20Mar%20del%20Plata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              mapLink: "https://www.google.com/maps/search/?api=1&query=Av.+Independencia+2846,+Mar+del+Plata"
             },
-            {
-              t: "Ceremonia Religiosa",
-              d: "12 Abril 2026",
-              h: "13:00 hs",
+            { 
+              t: "Ceremonia Religiosa", 
+              d: "12 Abril 2026", 
+              h: "13:00 hs", 
               l: "Pqa. San Carlos Borromeo, Juan B. Justo 2098",
-              // URL con dirección explícita
-              embedUrl: "https://maps.google.com/maps?q=Parroquia%20San%20Carlos%20Borromeo,%20Juan%20B.%20Justo%202098,%20Mar%20del%20Plata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              mapLink: "https://www.google.com/maps/search/?api=1&query=Parroquia+San+Carlos+Borromeo,+Juan+B.+Justo+2098,+Mar+del+Plata"
             },
-            {
-              t: "La Fiesta",
-              d: "12 Abril 2026",
-              h: "13:30 hs",
-              l: "Centro Naval Salón Michelis, Navegante Vito Dumas S/N",
-              // URL con dirección explícita
-              embedUrl: "https://maps.google.com/maps?q=Centro%20Naval,%20Navegante%20Vito%20Dumas,%20Puerto%20Mar%20del%20Plata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            { 
+              t: "La Fiesta", 
+              d: "12 Abril 2026", 
+              h: "13:30 hs", 
+              l: "Centro Naval. Salón Michelis, Navegante Vito Dumas S/N",
+              mapLink: "https://www.google.com/maps/search/?api=1&query=Centro+Naval+Salon+Michelis,+Puerto+Mar+del+Plata"
             }
           ].map((item, i) => (
-            <div key={i} style={{ ...cardStyle, padding: '0', overflow: 'hidden' }}>
-              <div style={{ padding: '40px 30px 20px' }}>
-                <h3 style={{ fontStyle: 'italic', fontSize: '1.5rem', marginBottom: '15px', fontWeight: '400' }}>{item.t}</h3>
-                <div style={{ width: '30px', height: '1px', backgroundColor: '#d6d3d1', margin: '0 auto 20px' }}></div>
-                <p style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#a8a29e', margin: '5px 0' }}>{item.d}</p>
-                <p style={{ fontSize: '1.2rem', margin: '10px 0' }}>{item.h}</p>
-                <p style={{ fontSize: '11px', color: '#78716c', textTransform: 'uppercase', lineHeight: '1.6', marginBottom: '10px', minHeight: '40px' }}>{item.l}</p>
-              </div>
+            <div key={i} style={{ 
+              ...cardStyle, 
+              padding: '50px 30px', 
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(255, 255, 255, 0.4)', // Sutil transparencia
+              backdropFilter: 'blur(5px)' // Efecto vidrio esmerilado
+            }}>
+              <h3 style={{ fontStyle: 'italic', fontSize: '1.6rem', marginBottom: '15px', fontWeight: '400' }}>{item.t}</h3>
+              <div style={{ width: '30px', height: '1px', backgroundColor: '#d6d3d1', margin: '0 auto 20px' }}></div>
+              
+              <p style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#a8a29e', margin: '5px 0' }}>{item.d}</p>
+              <p style={{ fontSize: '1.3rem', margin: '10px 0', fontWeight: '300' }}>{item.h}</p>
+              <p style={{ 
+                fontSize: '11px', 
+                color: '#78716c', 
+                textTransform: 'uppercase', 
+                lineHeight: '1.6', 
+                marginBottom: '30px', 
+                minHeight: '40px',
+                maxWidth: '220px' 
+              }}>{item.l}</p>
 
-              <div style={{ width: '100%', height: '300px', borderTop: '1px solid #f5f5f4' }}>
-                <iframe
-                  src={item.embedUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                ></iframe>
-              </div>
+              <a 
+                href={item.mapLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-block',
+                  padding: '12px 25px',
+                  border: '1px solid #1c1917',
+                  color: '#1c1917',
+                  textDecoration: 'none',
+                  fontSize: '11px',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.backgroundColor = '#1c1917';
+                  e.currentTarget.style.color = '#fff';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#1c1917';
+                }}
+              >
+                Ver Ubicación
+              </a>
             </div>
           ))}
         </div>
