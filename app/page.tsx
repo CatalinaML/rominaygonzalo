@@ -100,6 +100,8 @@ function InvitacionContent() {
         <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5em', color: '#a8a29e', marginBottom: '20px' }}>Save the Date</span>
         <h1 style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', fontStyle: 'italic', fontWeight: '200', margin: '0' }}>Romina & Gonzalo</h1>
         <div style={{ width: '1px', height: '80px', backgroundColor: '#e7e5e4', margin: '30px 0' }}></div>
+        <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5em', color: '#a8a29e', marginBottom: '20px' }}>Nos casamos!</span>
+
       </section>
 
       {/* SECCIÓN COUNTDOWN */}
@@ -124,7 +126,7 @@ function InvitacionContent() {
         }}>
           {[
             { label: 'DÍAS', value: timeLeft.days },
-            { label: 'HS', value: timeLeft.hours },
+            { label: 'HORAS', value: timeLeft.hours },
             { label: 'MIN', value: timeLeft.minutes },
             { label: 'SEG', value: timeLeft.seconds },
           ].map((item, index) => (
@@ -151,7 +153,7 @@ function InvitacionContent() {
         </div>
       </section>
 
-{/* EVENTOS - CARDS CON BOTÓN DE MAPA */}
+      {/* EVENTOS - CARDS CON BOTÓN DE MAPA */}
       <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px 100px' }}>
         <div style={{
           display: 'grid',
@@ -159,31 +161,31 @@ function InvitacionContent() {
           gap: '40px'
         }}>
           {[
-            { 
-              t: "Ceremonia Civil", 
-              d: "9 Abril 2026", 
-              h: "14:30 hs", 
+            {
+              t: "Ceremonia Civil",
+              d: "9 Abril 2026",
+              h: "14:30 hs",
               l: "Av. Independencia 2846, Mar del Plata",
               mapLink: "https://www.google.com/maps/search/?api=1&query=Av.+Independencia+2846,+Mar+del+Plata"
             },
-            { 
-              t: "Ceremonia Religiosa", 
-              d: "12 Abril 2026", 
-              h: "13:00 hs", 
+            {
+              t: "Ceremonia Religiosa",
+              d: "12 Abril 2026",
+              h: "13:00 hs",
               l: "Pqa. San Carlos Borromeo, Juan B. Justo 2098",
               mapLink: "https://www.google.com/maps/search/?api=1&query=Parroquia+San+Carlos+Borromeo,+Juan+B.+Justo+2098,+Mar+del+Plata"
             },
-            { 
-              t: "La Fiesta", 
-              d: "12 Abril 2026", 
-              h: "13:30 hs", 
+            {
+              t: "La Fiesta",
+              d: "12 Abril 2026",
+              h: "13:30 hs",
               l: "Centro Naval. Salón Michelis, Navegante Vito Dumas S/N",
               mapLink: "https://www.google.com/maps/search/?api=1&query=Centro+Naval+Salon+Michelis,+Puerto+Mar+del+Plata"
             }
           ].map((item, i) => (
-            <div key={i} style={{ 
-              ...cardStyle, 
-              padding: '50px 30px', 
+            <div key={i} style={{
+              ...cardStyle,
+              padding: '50px 30px',
               textAlign: 'center',
               display: 'flex',
               flexDirection: 'column',
@@ -194,22 +196,22 @@ function InvitacionContent() {
             }}>
               <h3 style={{ fontStyle: 'italic', fontSize: '1.6rem', marginBottom: '15px', fontWeight: '400' }}>{item.t}</h3>
               <div style={{ width: '30px', height: '1px', backgroundColor: '#d6d3d1', margin: '0 auto 20px' }}></div>
-              
+
               <p style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#a8a29e', margin: '5px 0' }}>{item.d}</p>
               <p style={{ fontSize: '1.3rem', margin: '10px 0', fontWeight: '300' }}>{item.h}</p>
-              <p style={{ 
-                fontSize: '11px', 
-                color: '#78716c', 
-                textTransform: 'uppercase', 
-                lineHeight: '1.6', 
-                marginBottom: '30px', 
+              <p style={{
+                fontSize: '11px',
+                color: '#78716c',
+                textTransform: 'uppercase',
+                lineHeight: '1.6',
+                marginBottom: '30px',
                 minHeight: '40px',
-                maxWidth: '220px' 
+                maxWidth: '220px'
               }}>{item.l}</p>
 
-              <a 
-                href={item.mapLink} 
-                target="_blank" 
+              <a
+                href={item.mapLink}
+                target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-block',
@@ -277,6 +279,8 @@ function InvitacionContent() {
           minWidth: '280px'
         }}>
           <p style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#a8a29e', margin: '0 0 10px' }}>BANCO NARANJA X</p>
+          <p style={{ fontSize: '14px', color: '#78716c', margin: '5px 0' }}>Titular: Valeria Romina Garciarena</p>
+          <p style={{ fontSize: '14px', color: '#78716c', margin: '5px 0' }}>CBU: 4530000800011003583180</p>
           <p style={{ fontSize: '14px', color: '#78716c', margin: '5px 0' }}>Alias: romina.y.gonzalo</p>
 
           <button
