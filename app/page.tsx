@@ -127,7 +127,7 @@ function InvitacionContent() {
           {[
             { label: 'DÍAS', value: timeLeft.days },
             { label: 'HORAS', value: timeLeft.hours },
-            { label: 'MIN', value: timeLeft.minutes },
+            { label: 'MINUTOS', value: timeLeft.minutes },
             { label: 'SEG', value: timeLeft.seconds },
           ].map((item, index) => (
             <div key={index} style={{ flex: 1 }}>
